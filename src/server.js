@@ -9,13 +9,15 @@ const app = express();
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME;
 
+//config req.body
+app.use(express.json()); // Used to parse JSON bodies
+app.use(express.urlencoded({ extended: true }))
+
 //config template engine
 configViewEngine(app);
 
 //Khai bao routes
 app.use("/", webRoutes);
-
-
 
 // simple query
 // connection.query(
@@ -26,13 +28,9 @@ app.use("/", webRoutes);
 // );
 
 // simple query
-connection.query(
-  'select * from Users u',
-  function(err, results, fields) {
-    console.log(results); // results contains rows returned by server
-    
-  }
-);
+// connection.query("select * from Users u", function (err, results, fields) {
+//   //console.log(results); // results contains rows returned by server
+// });
 
 app.listen(port, hostname, () => {
   console.log(`Example app listening on port ${port}`);
