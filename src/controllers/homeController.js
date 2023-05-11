@@ -1,5 +1,5 @@
 const getHomepage = (req,res) => {
-  res.send("Hello World!");
+  return res.render('home.ejs')
 }
 
 const getABC = (req,res) => {
